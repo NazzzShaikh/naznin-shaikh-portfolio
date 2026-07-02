@@ -73,19 +73,15 @@ export default function Skills() {
            initial={{ opacity: 0, y: -20 }}
            whileInView={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
-           className="text-left mb-16 flex flex-col sm:flex-row sm:items-center gap-6"
+           className="mb-20 text-left"
         >
-          <div className="w-14 h-14 bg-dark-card/50 border border-white/5 rounded-xl flex items-center justify-center shadow-lg">
-            <CodeXml size={28} className="text-cyan-primary" />
-          </div>
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black text-white tracking-wide mb-1">
-              Skills
-            </h2>
-            <p className="text-white/50 text-base font-light tracking-wide">
-              Technologies and tools I work with
-            </p>
-          </div>
+          <h2 className="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter">
+            Skills
+            <div className="w-20 h-1 bg-cyan-primary mt-4" />
+          </h2>
+          <p className="text-white/50 text-base md:text-lg font-light tracking-wide mt-6">
+            Technologies and tools I work with
+          </p>
         </motion.div>
 
         <div className="flex flex-wrap justify-center lg:justify-start gap-6">

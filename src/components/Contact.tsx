@@ -7,6 +7,13 @@ import { useState } from "react";
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("nazshaikh2529@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,8 +112,15 @@ export default function Contact() {
                 </div>
             )}
             {status === "error" && (
-                <div className="text-center p-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl font-bold">
-                   Error sending message. Please try again or email directly.
+                <div className="text-center p-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl font-bold flex flex-col items-center gap-3">
+                   <p>Error sending message. Please try again or email directly.</p>
+                   <button 
+                     type="button" 
+                     onClick={handleCopyEmail}
+                     className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg text-sm transition-colors border border-red-500/30"
+                   >
+                     {copied ? "Copied!" : "Copy Email: nazshaikh2529@gmail.com"}
+                   </button>
                 </div>
             )}
           </form>

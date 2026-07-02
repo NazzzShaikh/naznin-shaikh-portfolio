@@ -84,69 +84,57 @@ export default function Projects() {
           </h2>
         </motion.div>
 
-        <div className="flex flex-col gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, idx) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: (idx % 2) * 0.1 }}
               viewport={{ once: true }}
-              className="relative group flex flex-col lg:flex-row items-center gap-8 bg-dark-card/30 backdrop-blur-xl border border-white/5 rounded-[40px] p-8 md:p-12 hover:border-cyan-primary/30 transition-all duration-500 overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              className="relative group flex flex-col bg-dark-card/40 backdrop-blur-xl border border-white/5 rounded-[32px] p-6 md:p-8 hover:border-cyan-primary/30 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] h-full"
             >
               {/* Background Glow */}
-              <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-primary/5 rounded-full blur-[100px] -m-20 group-hover:bg-cyan-primary/10 transition-all duration-700" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-primary/5 rounded-full blur-[80px] -m-20 group-hover:bg-cyan-primary/15 transition-all duration-700 pointer-events-none" />
               
-              {/* Screenshot on Left */}
-              <div className="w-full lg:w-[55%] aspect-video relative rounded-3xl overflow-hidden border border-white/10 group-hover:border-cyan-primary/20 transition-all duration-500 shadow-2xl">
+              {/* Screenshot */}
+              <div className="w-full aspect-video relative rounded-2xl overflow-hidden border border-white/10 group-hover:border-cyan-primary/20 transition-all duration-500 shadow-md mb-8">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                
+                {/* Overlay Category Tag */}
+                <div className="absolute top-4 right-4 bg-dark-main/90 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full z-10 shadow-lg">
+                  <span className="text-cyan-primary font-bold text-xs tracking-widest uppercase">{project.category}</span>
+                </div>
               </div>
 
-              {/* Content in Middle */}
-              <div className="flex-1 text-left relative z-10">
-                <h3 className="text-2xl md:text-4xl font-black text-white mb-4 group-hover:text-cyan-primary transition-colors">
-                  {project.title}
-                </h3>
+              {/* Content */}
+              <div className="flex-1 flex flex-col text-left relative z-10">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <h3 className="text-2xl font-black text-white group-hover:text-cyan-primary transition-colors line-clamp-2">
+                    {project.title}
+                  </h3>
+                  <span className="text-4xl font-black text-white/5 select-none leading-none group-hover:text-white/10 transition-colors">
+                    {project.index}
+                  </span>
+                </div>
                 
-                <p className="text-white/70 text-sm md:text-base mb-6 leading-relaxed">
+                <p className="text-white/70 text-sm md:text-base mb-8 leading-relaxed flex-1 line-clamp-3">
                   {project.description}
                 </p>
                 
-                <div className="mb-6">
-                  <p className="text-cyan-primary font-bold tracking-widest uppercase text-xs mb-2">Technologies used</p>
-                  <p className="text-white/60 text-base md:text-lg font-light italic">
+                <div className="mt-auto pt-4 border-t border-white/5">
+                  <p className="text-cyan-primary font-bold tracking-widest uppercase text-[10px] mb-2 opacity-80">Technologies Used</p>
+                  <p className="text-white/60 text-sm font-light italic">
                     {project.tech}
                   </p>
                 </div>
-
-                {/* 
-                <div className="flex gap-4 mt-8">
-                  <a 
-                    href={project.link} 
-                    target="_blank"
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 border border-cyan-primary/30 text-cyan-primary font-bold text-xs tracking-widest uppercase rounded-full hover:bg-cyan-primary hover:text-dark-main transition-all shadow-lg hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] active:scale-95"
-                  >
-                    {project.link.includes('github') ? <GithubIcon size={18} /> : <ExternalLink size={18} />}
-                    {project.link.includes('github') ? 'Source Code' : 'Live Demo'}
-                  </a>
-                </div>
-                */}
-              </div>
-
-              {/* Project Metadata on Right */}
-              <div className="hidden lg:flex flex-col items-end justify-between h-full min-h-[160px] pb-4">
-                 <span className="text-8xl font-black text-white/5 translate-x-4">
-                    {project.index}
-                 </span>
-                 <div className="flex items-center gap-4 origin-right rotate-90 translate-y-12 translate-x-6">
-                    <span className="w-8 h-[1px] bg-cyan-primary" />
-                    <span className="text-sm tracking-[0.4em] uppercase text-white/40">{project.category}</span>
-                 </div>
               </div>
             </motion.div>
           ))}
