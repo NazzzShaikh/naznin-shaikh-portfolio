@@ -59,12 +59,14 @@ const projects = [
   {
     id: 6,
     index: "06",
-    title: "The Saaz Bakery",
+    title: "The Saaz",
     description: "A responsive bakery website showcasing bakery products and services with an attractive user experience.",
     tech: "HTML, CSS, JavaScript, Bootstrap",
     category: "Frontend",
-    image: "/images/hero-bg.png",
-    link: "#"
+    image: "/images/the-saaz.png",
+    link: "#",
+    liveLink: "https://the-saaz.vercel.app/",
+    githubLink: "https://github.com/NazzzShaikh/The-Saaz"
   }
 ];
 
@@ -131,9 +133,34 @@ export default function Projects() {
                 
                 <div className="mt-auto pt-4 border-t border-white/5">
                   <p className="text-cyan-primary font-bold tracking-widest uppercase text-[10px] mb-2 opacity-80">Technologies Used</p>
-                  <p className="text-white/60 text-sm font-light italic">
+                  <p className="text-white/60 text-sm font-light italic mb-4">
                     {project.tech}
                   </p>
+                  
+                  {(project.liveLink || project.githubLink) && (
+                    <div className="flex flex-wrap gap-3 mt-4">
+                      {project.liveLink && (
+                        <a 
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-cyan-primary/10 hover:bg-cyan-primary text-cyan-primary hover:text-dark-main border border-cyan-primary/30 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                        >
+                          <ExternalLink size={14} /> Live Demo
+                        </a>
+                      )}
+                      {project.githubLink && (
+                        <a 
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white text-white hover:text-dark-main border border-white/20 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300"
+                        >
+                          <GithubIcon size={14} /> Source
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
