@@ -33,8 +33,9 @@ const projects = [
     description: "A recruitment and talent management platform designed to simplify job postings, applications, and candidate management.",
     tech: "Java, JDBC, DBMS",
     category: "Software",
-    image: "/images/hero-bg.png",
-    link: "#"
+    image: "/images/career-link.png",
+    link: "#",
+    githubLink: "https://github.com/NazzzShaikh/CareerLink"
   },
   {
     id: 4,
@@ -44,7 +45,8 @@ const projects = [
     tech: "Django, React, Python, Tailwind, Scikit-learn, OpenAI API",
     category: "AI Web",
     image: "/images/hero-bg.png",
-    link: "#"
+    link: "#",
+    githubLink: "https://github.com/NazzzShaikh/Trackdemic"
   },
   {
     id: 5,
